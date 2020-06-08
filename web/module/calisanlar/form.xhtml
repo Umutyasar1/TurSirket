@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="calisanlar-form">
+        <div class="form-group">
+            <h:inputHidden value="#{calisanlarController.calisanlar.calisan_id}"/>
+            <label for="inputName">Çalışan Adı</label>
+            <h:inputText id="calisanlar_id" styleClass="form-control" value="#{calisanlarController.calisanlar.calisan_adi}" validator="#{validationBean.validate}" />
+            <h:message for="calisanlar_id" style="color: red" />
+
+            <label for="inputName">Çalışan Soyadı</label>
+            <h:inputText id="calisanlar_soyad" styleClass="form-control" value="#{calisanlarController.calisanlar.calisan_soyad}" validator="#{validationBean.validate}" />
+            <h:message for="calisanlar_soyad" style="color: red" />
+
+            <label for="inputName">Çalışan Yaş</label>
+            <h:inputText id="calisanlar_telno" styleClass="form-control" value="#{calisanlarController.calisanlar.calisan_yas}" validator="#{validationBean.validate}" />
+            <h:message for="calisanlar_telno" style="color: red" />
+
+             <label for="sirket">Sirket İsim</label>
+            <h:selectOneMenu styleClass="custom-select" id="selectSirket" value="#{calisanlarController.calisanlar.sirket}" converter="sirketConverter">
+                <f:selectItems value="#{calisanlarController.sirketList}" var="sirket" itemValue="#{sirket}" itemLabel="#{sirket.sirket_ad}"/>
+            </h:selectOneMenu>
+
+        </div>
+
+        <div class="form-group">
+            <div class="btn-group">
+                <h:commandButton rendered="#{loginController.user.c != 0}" action="#{calisanlarController.create}" value="Create" styleClass="btn btn-primary">
+                    <f:ajax execute="calisanlar-form" render="calisanlar-form calisanlar-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.u != 0}" action="#{calisanlarController.update}" value="Update" styleClass="btn btn-secondary">
+                    <f:ajax execute="calisanlar-form" render="calisanlar-form calisanlar-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.d != 0}" action="#{calisanlarController.delete}" value="Delete" styleClass="btn btn-danger">
+                    <f:ajax execute="calisanlar-form" render="calisanlar-form calisanlar-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.r != 0}" styleClass="btn btn-secondary" value="Clear form" action="#{calisanlarController.clearForm}">
+                    <f:ajax execute="@this" render="calisanlar-form"/>
+                </h:commandButton>
+
+            </div>
+
+        </div>
+    </h:form>
+
+</ui:composition>   
+
+

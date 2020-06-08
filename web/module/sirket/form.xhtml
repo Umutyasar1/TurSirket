@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="sirket-form">
+        <div class="form-group">
+            <h:inputHidden value="#{sirketController.sirket.sirket_id}"/>
+            <label for="inputName">Şirket İsim</label>
+            <h:inputText id="sirket_id" styleClass="form-control" value="#{sirketController.sirket.sirket_ad}" validator="#{validationBean.validate}" />
+            <h:message for="sirket_id" style="color: red" />
+
+            <label for="inputName">Hakkımızda</label>
+            <h:inputText id="hakkimizda" styleClass="form-control" value="#{sirketController.sirket.hakkimizda}" validator="#{validationBean.validate}" />
+            <h:message for="hakkimizda" style="color: red" />
+
+        </div>
+
+
+        <div class="form-group">
+            <div class="btn-group">
+               <h:commandButton rendered="#{loginController.user.c != 0}" action="#{sirketController.create}" value="Create" styleClass="btn btn-primary">
+                    <f:ajax execute="sirket-form" render="sirket-form sirket-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.u != 0}" action="#{sirketController.update}" value="Update" styleClass="btn btn-secondary">
+                    <f:ajax execute="sirket-form" render="sirket-form sirket-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.d != 0}" action="#{sirketController.delete}" value="Delete" styleClass="btn btn-danger">
+                    <f:ajax execute="sirket-form" render="sirket-form sirket-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.r != 0}" styleClass="btn btn-secondary" value="Clear form" action="#{sirketController.clearForm}">
+                    <f:ajax execute="@this" render="sirket-form"/>
+                </h:commandButton>
+
+            </div>
+        </div>
+    </h:form>
+
+</ui:composition>

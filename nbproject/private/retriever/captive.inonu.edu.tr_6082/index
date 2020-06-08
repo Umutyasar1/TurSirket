@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Internet Portal</title>
+        <meta name="author" content="Codrops" />
+        <link rel="shortcut icon" href="../favicon.ico"> 
+        <link rel="stylesheet" type="text/css" href="5-radius/css/style2.css" /> 
+        <!--[if lte IE 7]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+		<style>
+			body {
+				background: #e1c192 url(../images/bg.png);
+			}
+		</style>		
+    </head>
+    <body>
+        <div class="container">
+			
+			<header>
+			
+				<h1><strong>.::  İNÖNÜ ÜNİVERSİTESİ KULLANICI DOĞRULAMA SİSTEMİ  ::..</strong></h1>
+				<h2>Lütfen Kullanıcı ve Şifre Bilgilerinizi Doğru Şekilde Giriniz </h2>
+
+				
+			</header>
+	
+<script language="JavaScript" type="text/JavaScript">
+function showYasaluyari(){
+var popup = window.open("yasaluyari.php","","width=600,height=800,status=0,scrollbars=0,resizable=0")
+}
+</script>
+
+<script language="JavaScript" type="text/JavaScript">
+function showPopup(){
+var popup = window.open("logout/logout.html","","width=600,height=280,status=0,scrollbars=0,resizable=0")
+}
+</script>			
+			
+			<section class="main">
+				<form class="form-2" autocomplete="off" onsubmit="showPopup();return true"  action="5-radius/radius.php" method="post">
+					<h1><span class="sign-up">Internet Erİşİm Portalı</span></h1>
+					<p class="float">
+						<label for="login"><i class="icon-user"></i>UserName</label>
+						<input required type="text" name="username" placeholder="Kullanıcı Adınız" >
+						<label for="password"><i class="icon-lock"></i>Password</label>
+						<input required type="password" name="upasswd" placeholder="Şifreniz" class="showpassword" maxlength="40">
+					</p>
+					<p class="clearfix"> 
+						<a onclick="showYasaluyari();return true" class="log-twitter">Yasal Uyarı!</a>    
+						<input type="submit" name="submit" value="Giriş" onclick="checkLength()">
+					</p>
+				</form>​​
+			</section>
+			<section class="form-4">
+			<a href="https://login.inonu.edu.tr/personel/kullanici.php?islem=kullanicigirisi"><input type="submit" value="Şifremi unuttum !   ( Personel )"></a><br><br>
+			<a href="https://login.inonu.edu.tr/ogrenci/kullanici.php"><input type="submit" value="Şifremi unuttum !   ( Öğrenci )"></a><br>
+			</section>
+			<center><img src="../images/logo.png" alt="Auth Logo" ></center>
+        </div>
+
+		<script type="text/javascript">
+			$(function(){
+			    $(".showpassword").each(function(index,input) {
+			        var $input = $(input);
+			        $("<p class='opt'/>").append(
+			            $("<input type='checkbox' class='showpasswordcheckbox' id='showPassword' />").click(function() {
+			                var change = $(this).is(":checked") ? "text" : "password";
+			                var rep = $("<input placeholder='xxxx' type='" + change + "' />")
+			                    .attr("id", $input.attr("id"))
+			                    .attr("name", $input.attr("name"))
+			                    .attr('class', $input.attr('class'))
+			                    .val($input.val())
+			                    .insertBefore($input);
+			                $input.remove();
+			                $input = rep;
+			             })
+			        ).append($("<label for='showPassword'/>").text("View password")).insertAfter($input.parent());
+			    });
+
+			    $('#showPassword').click(function(){
+					if($("#showPassword").is(":checked")) {
+						$('.icon-lock').addClass('icon-unlock');
+						$('.icon-unlock').removeClass('icon-lock');    
+					} else {
+						$('.icon-unlock').addClass('icon-lock');
+						$('.icon-lock').removeClass('icon-unlock');
+					}
+			    });
+			});
+		</script>
+    </body>
+</html>
