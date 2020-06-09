@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form id="turlar-form">
+        <div class="form-group">
+            <h:inputHidden value="#{turlarController.turlar.tur_id}"/>
+            <label for="inputName">Tur Yeri</label>
+            <h:inputText id="tur_yeri" styleClass="form-control" value="#{turlarController.turlar.tur_yeri}" validatorMessage="en az 3 fazla 6" >
+                <f:validateLength minimum="3" maximum="6" />
+            </h:inputText>
+            <h:message for="tur_yeri" style="color: red" /> 
+
+
+            <label for="inputName">Tur Fiyat</label>
+            <h:inputText id="tur_fiyat" styleClass="form-control" value="#{turlarController.turlar.tur_fiyat}" validatorMessage="en az 3 fazla 6" >
+                <f:validateLength minimum="3" maximum="6" />
+            </h:inputText>
+            <h:message for="tur_fiyat" style="color: red" /> 
+            <label for="musteriTur">MusteriTur</label>
+            <h:selectManyMenu value="#{turlarController.turlar.musteriTur}" styleClass="custom-select" converter="musteriConverter">
+                <f:selectItems value="#{turlarController.musteriController.musteriList}" var="musteri" itemValue="#{musteri}" itemLabel="#{musteri.ad}"/>
+            </h:selectManyMenu>
+        </div>
+
+
+        <div class="form-group">
+            <div class="btn-group">
+                <h:commandButton rendered="#{loginController.user.c != 0}" action="#{turlarController.create}" value="Create" styleClass="btn btn-primary">
+                    <f:ajax execute="turlar-form" render="turlar-form turlar-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.u != 0}" action="#{turlarController.update}" value="Update" styleClass="btn btn-secondary">
+                    <f:ajax execute="turlar-form" render="turlar-form turlar-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.d != 0}" action="#{turlarController.delete}" value="Delete" styleClass="btn btn-danger">
+                    <f:ajax execute="turlar-form" render="turlar-form turlar-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.r != 0}" styleClass="btn btn-secondary" value="Clear form" action="#{turlarController.clearForm}">
+                    <f:ajax execute="@this" render="turlar-form"/>
+                </h:commandButton>
+
+            </div>
+        </div>
+    </h:form>
+
+</ui:composition>   
+

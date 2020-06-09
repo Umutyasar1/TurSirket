@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="turlar-table">
+
+        <h:dataTable styleClass="table table-striped" value="#{turlarController.turlarList}" var="turlar">
+            <h:column>
+                <f:facet name="header">Tur Id</f:facet>
+                <h:commandLink action="#{turlarController.updateForm(turlar)}" value="#{turlar.tur_id}">
+                    <f:ajax execute="@this" render="turlar-form" />
+                </h:commandLink>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tur Yeri</f:facet>
+                    #{turlar.tur_yeri}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Tur Fiyat</f:facet>
+                    #{turlar.tur_fiyat}
+            </h:column>
+            <h:column>
+                <f:facet name="header">MusteriAD</f:facet>
+                <ul>
+                    <ui:repeat value="#{musteri.turMusteriList}" var="tur" >    
+                        <li>#{tur.tur_adi}</li>
+                    </ui:repeat>
+                </ul>
+            </h:column>
+
+        </h:dataTable>
+    </h:form>
+
+
+</ui:composition>   
+
+

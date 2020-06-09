@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="musteri-form">
+        <div class="form-group">
+            <h:inputHidden value="#{musteriController.musteri.musteri_id}"/>
+            <label for="inputName">Musteri Adı</label>
+            <h:inputText id="musteri_id" styleClass="form-control" value="#{musteriController.musteri.ad}" validator="#{validationBean.validate}" />
+            <h:message for="musteri_id" style="color: red" />
+
+            <label for="inputName">Musteri Soyadı</label>
+            <h:inputText id="musteri_soyad" styleClass="form-control" value="#{musteriController.musteri.soyad}" validator="#{validationBean.validate}" />
+            <h:message for="musteri_soyad" style="color: red" />
+
+            <label for="inputName">Musteri TelNo</label>
+            <h:inputText id="musteri_telno" styleClass="form-control" value="#{musteriController.musteri.telno}" validator="#{validationBean.validate}" />
+            <h:message for="musteri_telno" style="color: red" />
+            
+        </div>
+
+
+        <div class="form-group">
+            <div class="btn-group">
+               <h:commandButton rendered="#{loginController.user.c != 0}" action="#{musteriController.create}" value="Create" styleClass="btn btn-primary">
+                    <f:ajax execute="musteri-form" render="musteri-form musteri-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.u != 0}" action="#{musteriController.update}" value="Update" styleClass="btn btn-secondary">
+                    <f:ajax execute="musteri-form" render="musteri-form musteri-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.d != 0}" action="#{musteriController.delete}" value="Delete" styleClass="btn btn-danger">
+                    <f:ajax execute="musteri-form" render="musteri-form musteri-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.r != 0}" styleClass="btn btn-secondary" value="Clear form" action="#{musteriController.clearForm}">
+                    <f:ajax execute="@this" render="musteri-form"/>
+                </h:commandButton>
+
+            </div>
+        </div>
+    </h:form>
+
+</ui:composition>

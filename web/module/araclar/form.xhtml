@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="araclar-form">
+        <div class="form-group">
+            <h:inputHidden value="#{araclarController.araclar.arac_id}"/>
+
+            <label for="inputName">Araclar Marka</label>
+            <h:inputText styleClass="form-control" value="#{araclarController.araclar.arac_marka}"/>
+
+
+            <label for="inputName">Araclar Plaka</label>
+            <h:inputText styleClass="form-control" value="#{araclarController.araclar.arac_plaka}" />
+        </div>
+
+
+        <div class="form-group">
+            <div class="btn-group">
+                <h:commandButton rendered="#{loginController.user.c != 0}" action="#{araclarController.create}" value="Create" styleClass="btn btn-primary">
+                    <f:ajax execute="araclar-form" render="araclar-form araclar-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.u != 0}" action="#{araclarController.update}" value="Update" styleClass="btn btn-secondary">
+                    <f:ajax execute="araclar-form" render="araclar-form araclar-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.d != 0}" action="#{araclarController.delete}" value="Delete" styleClass="btn btn-danger">
+                    <f:ajax execute="araclar-form" render="araclar-form araclar-table" />
+                </h:commandButton>
+                <h:commandButton rendered="#{loginController.user.r != 0}" styleClass="btn btn-secondary" value="Clear form" action="#{araclarController.clearForm}">
+                    <f:ajax execute="@this" render="araclar-form"/>
+                </h:commandButton>
+
+            </div>
+        </div>
+    </h:form>
+
+</ui:composition>
